@@ -2,11 +2,11 @@
 
 define(function (require) {
   var $ = require("jquery"),
-      i18nBundle = require("i18n!fc/nls/ui"),
       BackboneEvents = require("backbone-events"),
       SocialMedia = require("./social-media"),
       ConfirmDialogTemplate = require("template!confirm-dialog"),
-      PublishDialogTemplate = require("template!publish-dialog");
+      PublishDialogTemplate = require("template!publish-dialog"),
+      Localized = require("localized");
   
   function makeSharingHotLoader(options) {
     return function hotLoadEventHandler() {
@@ -69,7 +69,7 @@ define(function (require) {
         if (err) {
           publishDialog.stop().hide();
           modals.showErrorDialog({
-            text: i18nBundle['publish-err'] + " " + err.responseText
+            text: Localized.get('publish-err') + " " + err.responseText
           });
           publishErrorOccurred = true;
         } else {

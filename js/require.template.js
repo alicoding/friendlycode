@@ -3,14 +3,15 @@ define([
   "module",
   "text",
   "underscore",
-  "inline-l10n"
-], function (module, text, _, InlineL10n) {
+  "inline-l10n",
+  "localized"
+], function (module, text, _, InlineL10n, localized) {
   var buildMap = {},
       masterConfig = module.config(),
       i18nModuleName = "i18n!" + masterConfig.i18nPath;
 
   function templatePath(require, name) {
-    return require.toUrl(masterConfig.htmlPath + "/" + name)
+    return "/" + localized.getCurrentLang() + require.toUrl(masterConfig.htmlPath + "/" + name)
       .replace(".js", ".html");
   }
   

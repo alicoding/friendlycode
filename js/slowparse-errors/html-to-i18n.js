@@ -1,4 +1,4 @@
-define(["text"], function(text) {
+define(["text", "localized"], function(text, localized) {
   var buildMap = {};
   
   function htmlToI18nBundle(document, html) {
@@ -16,6 +16,7 @@ define(["text"], function(text) {
 
   return {
     load: function(name, req, onLoad, config) {
+      name = name.replace( /^\//, "/" + getCurrentLang() + "/" );
       var url = req.toUrl(name).replace(".js", ".html");
       
       text.get(url, function(html) {

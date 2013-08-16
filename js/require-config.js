@@ -74,7 +74,9 @@ var require = {
     "backbone-events": "shims/backbone-events",
     "template": "require.template",
     "test": "../test",
-    "templates": "../templates"
+    "templates": "../templates",
+    "localized": "localized",
+    "json": "json"
   },
   config: {
     template: {

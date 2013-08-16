@@ -3,8 +3,9 @@
 define([
   "i18n!fc/nls/html-element-docs",
   "i18n!fc/nls/css-property-docs",
-  "i18n!fc/nls/hacktionary"
-], function(HtmlElementDocs, CssPropertyDocs, Hacktionary) {
+  "i18n!fc/nls/hacktionary",
+  "Localized"
+], function(HtmlElementDocs, CssPropertyDocs, Hacktionary, Localized) {
   // A help index provides context-sensitive help for an HTML document,
   // indexed by characters in the HTML source code.
   function HelpIndex() {
@@ -33,12 +34,13 @@ define([
   // Return the context-sensitive help information for a particular
   // position in the source code, or undefined if no help is available.
   function getHelp(index, helpIndex) {
+    Localized.ready(function() {});
     var help = helpIndex[index];
     if (help) {
       if (help.type == "tag" && help.value in HtmlElementDocs)
         return {
           type: help.type,
-          html: HtmlElementDocs[help.value],
+          html: Localized.get(help.value),
           url: Help.MDN_URLS.html + help.value,
           highlights: help.highlights
         };
@@ -52,7 +54,7 @@ define([
       else if (help.type == "cssSelector")
         return {
           type: help.type,
-          html: Hacktionary["css-selector-docs"],
+          html: Localized.get("css-selector-docs"),
           url: Help.MDN_URLS.cssSelectors,
           highlights: help.highlights
         };
